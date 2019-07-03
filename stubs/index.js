@@ -16,7 +16,7 @@ app.get('/contacts', (req, res) => {
 });
 
 app.get('/contacts/:id', (req, res) => {
-  const contact = contactsModel.filter(item => item.id === Number(req.param('id')));
+  const contact = contactsModel.filter(item => item.id === Number(req.params.id));
   res.json(contact);
 });
 
