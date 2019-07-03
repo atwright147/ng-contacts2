@@ -1,0 +1,20 @@
+<h1>Contacts</h1>
+
+<table>
+  <tr>
+    <td>id</td>
+    <td>firstName</td>
+    <td>lastName</td>
+    <td>prefix</td>
+    <td>email</td>
+    <td>avatar</td>
+  </tr>
+  <tr *ngFor="let contact of contacts">
+    <td>{{ contact.id }}</td>
+    <td>{{ contact.firstName }}</td>
+    <td>{{ contact.lastName }}</td>
+    <td>{{ contact.prefix }}</td>
+    <td>{{ contact.email }}</td>
+    <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
+  </tr>
+</table>

@@ -11,11 +11,11 @@ const PORT = 3000;
 
 const contactsModel = require('./generate-contacts');
 
-app.get('/contacts', (req, res) => {
+app.get('/api/contacts', (req, res) => {
   res.json(contactsModel);
 });
 
-app.get('/contacts/:id', (req, res) => {
+app.get('/api/contacts/:id', (req, res) => {
   const contact = contactsModel.filter(item => item.id === Number(req.params.id));
   res.json(contact);
 });
