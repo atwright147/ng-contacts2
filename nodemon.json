@@ -1,0 +1,7 @@
+{
+  "events": {
+    "restart": "fuser 3000/tcp",
+    "quit": "fuser 3000/tcp",
+    "signal": "SIGTERM"
+  }
+}
