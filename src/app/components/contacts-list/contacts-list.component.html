@@ -9,7 +9,10 @@
     <td>email</td>
     <td>avatar</td>
   </tr>
-  <tr *ngFor="let contact of contacts">
+  <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
+    <td>
+      <input type="checkbox" (change)="checkOne($event, contact)">
+    </td>
     <td>{{ contact.id }}</td>
     <td>{{ contact.firstName }}</td>
     <td>{{ contact.lastName }}</td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ContactService } from '../../services/contact.service';
+import { IContact } from '../../interfaces/contact.interface';
 
 @Component({
   selector: 'app-contacts-list',
@@ -8,19 +9,29 @@ import { ContactService } from '../../services/contact.service';
   styleUrls: ['./contacts-list.component.scss']
 })
 export class ContactsListComponent implements OnInit {
-  contacts;
+  contacts: IContact[];
   isLoaded = false;
 
   constructor(
-    private readonly contact: ContactService,
+    private readonly contactService: ContactService,
   ) { }
 
   ngOnInit() {
-    this.contact.getAll().subscribe(
+    this.contactService.fetchAll();
+    this.contactService.contacts.subscribe(
       (data) => this.contacts = data,
-      (err) => console.debug(err),
-      () => this.isLoaded = true,
     );
   }
 
+  checkOne(event: any, row: IContact) {
+    if (event.target.checked) {
+      this.contactService.addChecked(row);
+    } else {
+      this.contactService.removeChecked(row);
+    }
+  }
+
+  isChecked(row: IContact) {
+    return row.checked;
+  }
 }
