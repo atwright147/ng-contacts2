@@ -2,12 +2,13 @@
 
 <table>
   <tr>
-    <td>id</td>
-    <td>firstName</td>
-    <td>lastName</td>
-    <td>prefix</td>
-    <td>email</td>
-    <td>avatar</td>
+    <td>Select</td>
+    <td>ID</td>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Prefix</td>
+    <td>Email</td>
+    <td>Avatar</td>
   </tr>
   <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
     <td>
