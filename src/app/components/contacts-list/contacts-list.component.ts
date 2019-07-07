@@ -31,7 +31,15 @@ export class ContactsListComponent implements OnInit {
     }
   }
 
-  isChecked(row: IContact) {
-    return row.checked;
+  isChecked(contact: IContact) {
+    return this.contactService.isChecked(contact);
+  }
+
+  get checked() {
+    let checked: IContact[];
+    this.contactService.checked.subscribe(
+      (data) => checked = data,
+    );
+    return checked;
   }
 }

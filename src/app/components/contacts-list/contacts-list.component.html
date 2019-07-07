@@ -22,3 +22,11 @@
     <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
   </tr>
 </table>
+
+<ng-container *ngIf="checked">
+  <ul>
+    <li *ngFor="let checkedItem of checked">
+      {{ checkedItem.prefix }} {{ checkedItem.firstName }} {{ checkedItem.lastName }}
+    </li>
+  </ul>
+</ng-container>

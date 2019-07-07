@@ -9,7 +9,8 @@ import { IContact } from '../interfaces/contact.interface';
 })
 export class ContactService {
   private _contacts: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
-  private _chosenContact: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
+  private _chosen: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
+  private _checked: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
 
   constructor(
     private readonly http: HttpClient,
@@ -24,7 +25,7 @@ export class ContactService {
 
   fetchById(id: number) {
     return this.http.get(`/api/contacts/${id}`).subscribe(
-      (data: IContact) => this._chosenContact.next(data),
+      (data: IContact) => this._chosen.next(data),
       (err) => console.debug(err),  // tslint:disable-line no-console
     );
   }
@@ -33,19 +34,27 @@ export class ContactService {
     return this._contacts.asObservable();
   }
 
-  get chosenContact() {
-    return this._chosenContact.asObservable();
+  get chosen() {
+    return this._chosen.asObservable();
+  }
+
+  get checked() {
+    return this._checked.asObservable();
+  }
+
+  isChecked(contact: IContact) {
+    return this._checked.value.includes(contact);
   }
 
   addChecked(contact: IContact) {
-    const contacts = this._contacts.value;
-    const contactIndex = this._contacts.value.findIndex((item) => item === contact);
-    contacts[contactIndex].checked = true;
-    this._contacts.next(contacts);
-    console.info(this._contacts.value);
+    const contacts = [contact, ...this._checked.value];
+    this._checked.next(contacts);
   }
 
   removeChecked(contact: IContact) {
-    contact.checked = false;
+    const checkedClone = [].concat(this._checked.value);
+    const checkedIndex = this._checked.value.findIndex((item) => item === contact);
+    checkedClone.splice(checkedIndex, 1);
+    this._checked.next(checkedClone);
   }
 }
