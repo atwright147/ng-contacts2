@@ -42,4 +42,16 @@ export class ContactsListComponent implements OnInit {
     );
     return checked;
   }
+
+  move(contact: IContact, direction: 'up' | 'down' | 'first' | 'last') {
+    this.contactService.move(contact, direction);
+  }
+
+  isFirst(contact: IContact) {
+    return this.contactService.isFirst(contact);
+  }
+
+  isLast(contact: IContact) {
+    return this.contactService.isLast(contact);
+  }
 }

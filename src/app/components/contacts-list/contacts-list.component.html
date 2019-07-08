@@ -9,6 +9,7 @@
     <td>Prefix</td>
     <td>Email</td>
     <td>Avatar</td>
+    <td>Actions</td>
   </tr>
   <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
     <td>
@@ -20,6 +21,12 @@
     <td>{{ contact.prefix }}</td>
     <td>{{ contact.email }}</td>
     <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
+    <td>
+      <button (click)="move(contact, 'up')" *ngIf="!isFirst(contact)">Up</button>
+      <button (click)="move(contact, 'down')" *ngIf="!isLast(contact)">Down</button>
+      <button (click)="move(contact, 'first')" *ngIf="!isFirst(contact)">First</button>
+      <button (click)="move(contact, 'last')" *ngIf="!isLast(contact)">Last</button>
+    </td>
   </tr>
 </table>
 

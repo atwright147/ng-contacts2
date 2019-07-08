@@ -57,4 +57,36 @@ export class ContactService {
     checkedClone.splice(checkedIndex, 1);
     this._checked.next(checkedClone);
   }
+
+  move(row: IContact, direction: 'up' | 'down' | 'first' | 'last') {
+    const index = this._contacts.value.indexOf(row);
+    if (index === -1) { return; }
+
+    switch (direction) {
+      case 'up':
+        [this._contacts.value[index - 1], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[index - 1]];
+        break;
+
+      case 'down':
+        [this._contacts.value[index + 1], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[index + 1]];
+        break;
+
+      case 'first':
+        [this._contacts.value[0], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[0]];
+        break;
+
+      case 'last':
+        const len = this._contacts.value.length - 1;
+        [this._contacts.value[len], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[len]];
+        break;
+    }
+  }
+
+  isFirst(contact: IContact) {
+    return this._contacts.value.indexOf(contact) === 0;
+  }
+
+  isLast(contact: IContact) {
+    return this._contacts.value.indexOf(contact) === this._contacts.value.length - 1;
+  }
 }
