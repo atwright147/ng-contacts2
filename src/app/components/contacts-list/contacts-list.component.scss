@@ -2,9 +2,47 @@ table {
   border-collapse: collapse;
 }
 
+th,
 td {
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+th {
+  position: relative;
+  padding-right: 30px;
+
+  &:before {
+    content: '';
+
+    position: absolute;
+    top: 15px;
+    right: 10px;
+
+    width: 0;
+    height: 0;
+    border: {
+      style: solid;
+      width: 0 5px 7px 5px;
+      color: transparent transparent #ccc transparent;
+    }
+  }
+
+  &.is-sort-asc:before {
+    border: {
+      style: solid;
+      width: 0 5px 7px 5px;
+      color: transparent transparent green transparent;
+    }
+  }
+
+  &.is-sort-desc:before {
+    border: {
+      style: solid;
+      width: 0 5px 7px 5px;
+      color: transparent transparent red transparent;
+    }
+  }
 }
 
 .is-checked td {

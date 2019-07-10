@@ -11,6 +11,7 @@ export class ContactService {
   private _contacts: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
   private _chosen: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
   private _checked: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
+  private _sortBy: BehaviorSubject<any> = new BehaviorSubject({ key: '', reverse: false });
 
   constructor(
     private readonly http: HttpClient,
@@ -89,4 +90,29 @@ export class ContactService {
   isLast(contact: IContact) {
     return this._contacts.value.indexOf(contact) === this._contacts.value.length - 1;
   }
+
+  sort(key: string) {
+    let _reverse = this._sortBy.value.reverse || false;
+    if (this._sortBy.value.key === key) {
+      _reverse = !this._sortBy.value.reverse;
+    }
+    const sorted = this._contacts.value.sort(this.sortBy(key, _reverse));
+    this._contacts.next(sorted);
+    this._sortBy.next({ key, reverse: _reverse });
+  }
+
+  private sortBy(key: string, reverse: boolean) {
+    const moveSmaller = reverse ? 1 : -1;
+    const moveLarger = reverse ? -1 : 1;
+
+    return (a: any, b: any) => {
+      if (a[key] < b[key]) {
+        return moveSmaller;
+      }
+      if (a[key] > b[key]) {
+        return moveLarger;
+      }
+      return 0;
+    };
+  };
 }
