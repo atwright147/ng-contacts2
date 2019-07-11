@@ -28,7 +28,11 @@ th {
     }
   }
 
-  &.is-sort-asc:before {
+  &.is-reversed:before {
+    transform: rotate(180deg);
+  }
+
+  &.is-sorted-by:before {
     border: {
       style: solid;
       width: 0 5px 7px 5px;
@@ -36,7 +40,7 @@ th {
     }
   }
 
-  &.is-sort-desc:before {
+  &.is-sorted-by:before {
     border: {
       style: solid;
       width: 0 5px 7px 5px;

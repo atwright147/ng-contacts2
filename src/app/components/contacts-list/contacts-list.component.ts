@@ -35,6 +35,14 @@ export class ContactsListComponent implements OnInit {
     return this.contactService.isChecked(contact);
   }
 
+  isSortedBy(key: string) {
+    return this.contactService.isSortedBy(key);
+  }
+
+  get isSortReversed() {
+    return this.contactService.isSortReversed;
+  }
+
   get checked() {
     let checked: IContact[];
     this.contactService.checked.subscribe(

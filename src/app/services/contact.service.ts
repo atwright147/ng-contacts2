@@ -91,6 +91,14 @@ export class ContactService {
     return this._contacts.value.indexOf(contact) === this._contacts.value.length - 1;
   }
 
+  isSortedBy(key: string) {
+    return this._sortBy.value.key === key;
+  }
+
+  get isSortReversed(reverse: string) {
+    return this._sortBy.value.reverse === reverse;
+  }
+
   sort(key: string) {
     let _reverse = this._sortBy.value.reverse || false;
     if (this._sortBy.value.key === key) {
