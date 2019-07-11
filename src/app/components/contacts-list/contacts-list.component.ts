@@ -43,6 +43,10 @@ export class ContactsListComponent implements OnInit {
     return checked;
   }
 
+  sort(column: string) {
+    this.contactService.sort(column);
+  }
+
   move(contact: IContact, direction: 'up' | 'down' | 'first' | 'last') {
     this.contactService.move(contact, direction);
   }
