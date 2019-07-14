@@ -3,11 +3,11 @@
 <table>
   <tr>
     <th>Select</th>
-    <th (click)="sort('id')" [ngClass]="{'is-sorted-by': isSortedBy('id'), 'is-reversed': isSortReversed}" class="sortable">ID</th>
-    <th (click)="sort('firstName')" [ngClass]="{'is-sorted-by': isSortedBy('firstName'), 'is-reversed': isSortReversed}" class="sortable">First Name</th>
-    <th (click)="sort('lastName')" [ngClass]="{'is-sorted-by': isSortedBy('lastName'), 'is-reversed': isSortReversed}" class="sortable">Last Name</th>
-    <th (click)="sort('prefix')" [ngClass]="{'is-sorted-by': isSortedBy('prefix'), 'is-reversed': isSortReversed}" class="sortable">Prefix</th>
-    <th (click)="sort('email')" [ngClass]="{'is-sorted-by': isSortedBy('email'), 'is-reversed': isSortReversed}" class="sortable">Email</th>
+    <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
+    <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
+    <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
+    <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
+    <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
     <th>Avatar</th>
     <th>Actions</th>
   </tr>

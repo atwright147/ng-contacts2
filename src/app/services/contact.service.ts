@@ -95,8 +95,8 @@ export class ContactService {
     return this._sortBy.value.key === key;
   }
 
-  get isSortReversed() {
-    return this._sortBy.value.reverse;
+  isSortReversed(key: string) {
+    return this._sortBy.value.key === key && this._sortBy.value.reverse;
   }
 
   sort(key: string) {

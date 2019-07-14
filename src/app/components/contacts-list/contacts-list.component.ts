@@ -35,12 +35,18 @@ export class ContactsListComponent implements OnInit {
     return this.contactService.isChecked(contact);
   }
 
-  isSortedBy(key: string) {
-    return this.contactService.isSortedBy(key);
-  }
+  getClassNames(key: string) {
+    const classNames = [];
 
-  get isSortReversed() {
-    return this.contactService.isSortReversed;
+    if (this.contactService.isSortedBy(key)) {
+      classNames.push('is-sorted-by');
+    }
+
+    if (this.contactService.isSortedBy(key) && this.contactService.isSortReversed(key)) {
+      classNames.push('is-reversed');
+    }
+
+    return classNames.join(' ');
   }
 
   get checked() {
