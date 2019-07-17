@@ -8,10 +8,10 @@ import { IContact } from '../interfaces/contact.interface';
   providedIn: 'root'
 })
 export class ContactService {
-  private _contacts: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
-  private _chosen: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
-  private _checked: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
-  private _sortBy: BehaviorSubject<any> = new BehaviorSubject({ key: '', reverse: false });
+  private readonly _contacts: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
+  private readonly _chosen: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
+  private readonly _checked: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
+  private readonly _sortBy: BehaviorSubject<any> = new BehaviorSubject({ key: '', reverse: false });
 
   constructor(
     private readonly http: HttpClient,
