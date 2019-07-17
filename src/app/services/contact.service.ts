@@ -122,5 +122,20 @@ export class ContactService {
       }
       return 0;
     };
-  };
+  }
+
+  search(term: string) {
+    const searchKeys = [
+      'firstName',
+      'lastName',
+      'prefix',
+      'email',
+    ];
+    const result = searchKeys.map(sk => this.searchBy(sk, term));
+    console.info(result);
+  }
+
+  searchBy(key: string, term: string) {
+    return this._contacts.value.filter((contact: any) => contact[key] === term);
+  }
 }

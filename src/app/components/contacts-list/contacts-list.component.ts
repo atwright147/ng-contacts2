@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { ContactService } from '../../services/contact.service';
 import { IContact } from '../../interfaces/contact.interface';
@@ -71,5 +72,10 @@ export class ContactsListComponent implements OnInit {
 
   isLast(contact: IContact) {
     return this.contactService.isLast(contact);
+  }
+
+  onSubmit(data: any) {
+    console.info(data);
+    this.contactService.search(data.searchTerm);
   }
 }

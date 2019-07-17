@@ -1,5 +1,16 @@
 <h1>Contacts</h1>
 
+<form
+  #searchForm="ngForm"
+  (ngSubmit)="onSubmit(searchForm.value)"
+  autocomplete="off"
+  class="search-form"
+>
+  <label for="search-field">Search</label>
+  <input type="search" id="search-field" name="searchTerm" ngModel>
+  <button type="submit">Confirm</button>
+</form>
+
 <table>
   <tr>
     <th>Select</th>
