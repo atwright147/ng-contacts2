@@ -12,35 +12,7 @@
   <button type="button" (click)="clearSearchResults()">Clear</button>
 </form>
 
-<table>
-  <tr>
-    <th>Select</th>
-    <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
-    <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
-    <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
-    <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
-    <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
-    <th>Avatar</th>
-    <th>Actions</th>
-  </tr>
-  <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
-    <td>
-      <input type="checkbox" (change)="checkOne($event, contact)">
-    </td>
-    <td>{{ contact.id }}</td>
-    <td>{{ contact.firstName }}</td>
-    <td>{{ contact.lastName }}</td>
-    <td>{{ contact.prefix }}</td>
-    <td>{{ contact.email }}</td>
-    <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
-    <td>
-      <button (click)="move(contact, 'up')" *ngIf="!isFirst(contact)">Up</button>
-      <button (click)="move(contact, 'down')" *ngIf="!isLast(contact)">Down</button>
-      <button (click)="move(contact, 'first')" *ngIf="!isFirst(contact)">First</button>
-      <button (click)="move(contact, 'last')" *ngIf="!isLast(contact)">Last</button>
-    </td>
-  </tr>
-</table>
+<app-contacts-table [contacts]="contacts"></app-contacts-table>
 
 <ng-container *ngIf="checked">
   <ul>

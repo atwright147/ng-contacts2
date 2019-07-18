@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
+import { ContactsTableComponent } from './components/contacts-table/contacts-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsListComponent
+    ContactsListComponent,
+    ContactsTableComponent
   ],
   imports: [
     BrowserModule,
