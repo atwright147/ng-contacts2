@@ -75,7 +75,6 @@ export class ContactsListComponent implements OnInit {
   }
 
   onSubmit(data: any) {
-    console.info(data);
     this.contactService.search(data.searchTerm);
   }
 }
