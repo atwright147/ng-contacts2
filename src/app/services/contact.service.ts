@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 import { IContact } from '../interfaces/contact.interface';
+import { getUniqueMerge } from '../../helpers/array.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -124,18 +125,24 @@ export class ContactService {
     };
   }
 
-  search(term: string) {
-    const searchKeys = [
+  search(term: string): IContact[] | [] {
+    if (!term) {
+      return [];
+    }
+
+    const fieldsToSearchBy = [
       'firstName',
       'lastName',
       'prefix',
       'email',
     ];
-    const result = searchKeys.map(sk => this.searchBy(sk, term));
-    console.info(result);
+    const result = fieldsToSearchBy.map(sk => this.searchBy(sk, term));
+
+    return getUniqueMerge(...result) as IContact[];
   }
 
   searchBy(key: string, term: string) {
-    return this._contacts.value.filter((contact: any) => contact[key] === term);
+    const regex = new RegExp(term, 'i');
+    return this._contacts.value.filter((contact: any) => regex.test(contact[key]));
   }
 }
