@@ -13,6 +13,7 @@ export class ContactService {
   private readonly _chosen: BehaviorSubject<IContact> = new BehaviorSubject<IContact>({} as IContact);
   private readonly _checked: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
   private readonly _sortBy: BehaviorSubject<any> = new BehaviorSubject({ key: '', reverse: false });
+  private readonly _searchResults: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
 
   constructor(
     private readonly http: HttpClient,
@@ -42,6 +43,10 @@ export class ContactService {
 
   get checked() {
     return this._checked.asObservable();
+  }
+
+  get searchResults() {
+    return this._searchResults.asObservable();
   }
 
   isChecked(contact: IContact) {
@@ -138,11 +143,15 @@ export class ContactService {
     ];
     const result = fieldsToSearchBy.map(sk => this.searchBy(sk, term));
 
-    return getUniqueMerge(...result) as IContact[];
+    this._searchResults.next(getUniqueMerge(...result) as IContact[]);
   }
 
   searchBy(key: string, term: string) {
     const regex = new RegExp(term, 'i');
     return this._contacts.value.filter((contact: any) => regex.test(contact[key]));
+  }
+
+  clearSearch() {
+    this._searchResults.next([]);
   }
 }
