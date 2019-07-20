@@ -27,7 +27,7 @@ export class ContactsListComponent implements OnInit {
     this.contactService.search(data.searchTerm);
   }
 
-  clearSearch() {
-    this.contactService.clearSearch([]);
+  clearSearchResults() {
+    this.contactService.clearSearchResults();
   }
 }

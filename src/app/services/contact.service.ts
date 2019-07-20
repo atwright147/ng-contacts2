@@ -151,7 +151,7 @@ export class ContactService {
     return this._contacts.value.filter((contact: any) => regex.test(contact[key]));
   }
 
-  clearSearch() {
+  clearSearchResults() {
     this._searchResults.next([]);
   }
 }

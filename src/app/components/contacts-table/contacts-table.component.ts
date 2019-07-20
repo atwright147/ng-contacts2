@@ -67,4 +67,5 @@ export class ContactsTableComponent implements OnInit {
 
   isLast(contact: IContact) {
     return this.contactService.isLast(contact);
-  }}
+  }
+}
