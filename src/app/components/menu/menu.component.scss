@@ -1,0 +1,32 @@
+.menu-container {
+  position: relative;
+}
+
+.menu-button {
+  display:inline;
+}
+
+.menu-body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: .5;
+
+  li {
+    padding: 10px 20px;
+    list-style: none;
+
+    &:hover {
+      background-color: cornflowerblue;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &.open {
+    opacity: 1;
+  }
+}

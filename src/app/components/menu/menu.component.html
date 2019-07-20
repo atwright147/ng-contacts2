@@ -1,0 +1,11 @@
+<div class="menu-container">
+  <button class="menu-button" (click)="setOpen()">Open</button>
+  <button class="menu-button" (click)="setClosed()">Close</button>
+
+  <ul class="menu-body" [ngClass]="{ 'open': open }">
+    <li (click)="moveUp">Move up</li>
+    <li (click)="moveDown">Move down</li>
+    <li (click)="moveToTop">Move to top</li>
+    <li (click)="moveToBottom">Move to bottom</li>
+  </ul>
+</div>

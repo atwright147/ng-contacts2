@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 import { ContactsTableComponent } from './components/contacts-table/contacts-table.component';
 import { SearchResultsTableComponent } from './components/search-results-table/search-results-table.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsListComponent,
     ContactsTableComponent,
-    SearchResultsTableComponent
+    SearchResultsTableComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
