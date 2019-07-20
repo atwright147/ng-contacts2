@@ -8,16 +8,12 @@ import { IContact } from '../../interfaces/contact.interface';
   templateUrl: './contacts-table.component.html',
   styleUrls: ['./contacts-table.component.scss']
 })
-export class ContactsTableComponent implements OnInit {
+export class ContactsTableComponent {
   @Input() contacts: IContact[];
 
   constructor(
     private readonly contactService: ContactService,
   ) { }
-
-  ngOnInit() {
-    console.info(this.contacts);
-  }
 
   checkOne(event: any, row: IContact) {
     if (event.target.checked) {

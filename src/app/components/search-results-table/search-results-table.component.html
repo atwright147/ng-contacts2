@@ -1,0 +1,20 @@
+<ng-container *ngIf="hasSearchResults">
+  <table class="search-results">
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Prefix</th>
+      <th>Email</th>
+      <th>Avatar</th>
+    </tr>
+    <tr *ngFor="let searchResult of searchResults">
+      <td>{{ searchResult.id }}</td>
+      <td>{{ searchResult.firstName }}</td>
+      <td>{{ searchResult.lastName }}</td>
+      <td>{{ searchResult.prefix }}</td>
+      <td>{{ searchResult.email }}</td>
+      <td><img [src]="searchResult.avatar" alt="" style="width: 25px;"></td>
+    </tr>
+  </table>
+</ng-container>
