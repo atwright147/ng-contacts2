@@ -4,6 +4,10 @@
 
 .menu-button {
   display:inline;
+
+  i.material-icons {
+    pointer-events: none;
+  }
 }
 
 .menu-body {
