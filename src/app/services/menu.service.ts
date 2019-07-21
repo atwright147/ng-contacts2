@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  private readonly _open: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _openId: any = null;
+  private _menuElement: HTMLElement | null;
 
   constructor() {}
 
-  setOpen() {
-    this._open.next(true);
+  setOpen(event: Event, id: any) {
+    this._openId = id;
+    this._menuElement = (event.target as HTMLElement).parentNode.querySelector('.menu-body');
   }
 
   setClosed() {
-    this._open.next(false);
+    this._openId = null;
   }
 
-  get open() {
-    return this._open.value;
+  getOpen(id: any) {
+    return this._openId === id;
   }
+
+  addListener() {
+    document.addEventListener('click', (event) => {
+      const targetElement = event.target as HTMLElement;
+
+      if (this._menuElement && !this._menuElement.contains(targetElement) && !targetElement.classList.contains('menu-button')) {
+        this.setClosed();
+      }
+    });
+  }
+
+  removeListener() {}
 }

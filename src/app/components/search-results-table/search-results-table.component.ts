@@ -18,7 +18,7 @@ export class SearchResultsTableComponent implements OnInit {
   ngOnInit() {
     this.contactsService.searchResults.subscribe(
       (data: IContact[]) => this.searchResults = data,
-      (err: any) => console.debug(err),
+      (err: any) => console.debug(err),  // tslint:disable-line:no-console
     );
   }
 

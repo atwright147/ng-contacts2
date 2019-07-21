@@ -1,6 +1,5 @@
-<div class="menu-container">
-  <button class="menu-button" (click)="setOpen()">Open</button>
-  <button class="menu-button" (click)="setClosed()">Close</button>
+<div class="menu-container" aria-live="assertive">
+  <button class="menu-button" (click)="setOpen($event, id)">Open</button>
 
   <ul class="menu-body" [ngClass]="{ 'open': open }">
     <li (click)="moveUp">Move up</li>

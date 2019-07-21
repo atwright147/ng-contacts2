@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MenuService } from '../../services/menu.service';
 
@@ -8,6 +8,8 @@ import { MenuService } from '../../services/menu.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  @Input() id: any;
+
   constructor(
     private readonly menuService: MenuService,
   ) { }
@@ -15,7 +17,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {}
 
   setOpen() {
-    this.menuService.setOpen();
+    this.menuService.setOpen(event, this.id);
   }
 
   setClosed() {
@@ -23,6 +25,6 @@ export class MenuComponent implements OnInit {
   }
 
   get open() {
-    return this.menuService.open;
+    return this.menuService.getOpen(this.id);
   }
 }
