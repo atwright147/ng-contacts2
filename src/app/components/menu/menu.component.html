@@ -1,5 +1,5 @@
 <div class="menu-container" aria-live="assertive">
-  <button class="menu-button" (click)="setOpen($event, id)">Open</button>
+  <button class="menu-button" (click)="setOpen($event, id)"><i class="material-icons" aria-hidden="true">more_vert</i></button>
 
   <ul class="menu-body" [ngClass]="{ 'open': open }">
     <li (click)="moveUp">Move up</li>
