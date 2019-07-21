@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {}
 
   setOpen() {
-    this.menuService.setOpen(event, this.id);
+    this.menuService.setOpen(event, this.id);  // tslint:disable-line:deprecation
   }
 
   setClosed() {
