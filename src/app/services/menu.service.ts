@@ -11,7 +11,7 @@ export class MenuService {
 
   setOpen(event: Event, id: any) {
     this._openId = id;
-    this._menuElement = (event.target as HTMLElement).parentNode.querySelector('.menu-body');
+    this._menuElement = (event.target as HTMLElement).closest('.menu-container').querySelector('.menu-body');
   }
 
   setClosed() {
