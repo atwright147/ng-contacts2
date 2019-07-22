@@ -7,6 +7,14 @@ export class MenuService {
   private _openId: any = null;
   private _menuElement: HTMLElement | null;
 
+  listener = (event: Event) => {
+    const targetElement = event.target as HTMLElement;
+    console.info(targetElement);
+    if (this._menuElement && !this._menuElement.contains(targetElement) && !targetElement.classList.contains('menu-button')) {
+      this.setClosed();
+    }
+  }
+
   constructor() {}
 
   setOpen(event: Event, id: any) {
@@ -27,14 +35,11 @@ export class MenuService {
   }
 
   addListener() {
-    document.addEventListener('click', (event) => {
-      const targetElement = event.target as HTMLElement;
-
-      if (this._menuElement && !this._menuElement.contains(targetElement) && !targetElement.classList.contains('menu-button')) {
-        this.setClosed();
-      }
-    });
+    document.addEventListener('click', this.listener.bind(this, event) as any);
   }
 
-  removeListener() {}
+  removeListener() {
+    console.info('remove');
+    document.removeEventListener('click', this.listener.bind(this, event) as any);
+  }
 }

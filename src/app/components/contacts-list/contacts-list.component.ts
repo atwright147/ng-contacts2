@@ -41,4 +41,8 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   clearSearchResults() {
     this.contactService.clearSearchResults();
   }
+
+  removeListener() {
+    this.menuService.removeListener();
+  }
 }
