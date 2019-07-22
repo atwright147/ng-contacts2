@@ -10,8 +10,12 @@ export class MenuService {
   constructor() {}
 
   setOpen(event: Event, id: any) {
-    this._openId = id;
-    this._menuElement = (event.target as HTMLElement).closest('.menu-container').querySelector('.menu-body');
+    if ((event.target as HTMLElement).classList.contains('menu-button') && this._openId === id) {
+      this.setClosed();
+    } else {
+      this._openId = id;
+      this._menuElement = (event.target as HTMLElement).closest('.menu-container').querySelector('.menu-body');
+    }
   }
 
   setClosed() {
