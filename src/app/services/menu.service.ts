@@ -9,7 +9,6 @@ export class MenuService {
 
   listener = (event: Event) => {
     const targetElement = event.target as HTMLElement;
-    console.info(targetElement);
     if (this._menuElement && !this._menuElement.contains(targetElement) && !targetElement.classList.contains('menu-button')) {
       this.setClosed();
     }
@@ -39,7 +38,6 @@ export class MenuService {
   }
 
   removeListener() {
-    console.info('remove');
     document.removeEventListener('click', this.listener);
   }
 }
