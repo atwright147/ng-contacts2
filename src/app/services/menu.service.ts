@@ -35,11 +35,11 @@ export class MenuService {
   }
 
   addListener() {
-    document.addEventListener('click', this.listener.bind(this, event) as any);
+    document.addEventListener('click', this.listener);
   }
 
   removeListener() {
     console.info('remove');
-    document.removeEventListener('click', this.listener.bind(this, event) as any);
+    document.removeEventListener('click', this.listener);
   }
 }
