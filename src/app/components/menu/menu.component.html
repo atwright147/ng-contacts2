@@ -1,10 +1,4 @@
-<div class="menu-container" aria-live="assertive">
+<div class="menu-container">
   <button class="menu-button" (click)="setOpen($event, id)"><i class="material-icons" aria-hidden="true">more_vert</i></button>
-
-  <ul class="menu-body" [ngClass]="{ 'open': open }">
-    <li (click)="moveUp">Move up</li>
-    <li (click)="moveDown">Move down</li>
-    <li (click)="moveToTop">Move to top</li>
-    <li (click)="moveToBottom">Move to bottom</li>
-  </ul>
+  <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{'open': open}"></ng-container>
 </div>

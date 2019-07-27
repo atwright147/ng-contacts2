@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
 
+import { ContactService } from '../../services/contact.service';
 import { MenuService } from '../../services/menu.service';
+import { IContact } from '../../interfaces/contact.interface';
 
 @Component({
   selector: 'app-menu',
@@ -9,8 +11,11 @@ import { MenuService } from '../../services/menu.service';
 })
 export class MenuComponent implements OnInit {
   @Input() id: any;
+  @Input() allItems: any;
+  @ContentChild(TemplateRef) template: TemplateRef<any>;
 
   constructor(
+    private readonly contactService: ContactService,
     private readonly menuService: MenuService,
   ) { }
 
@@ -26,5 +31,18 @@ export class MenuComponent implements OnInit {
 
   get open() {
     return this.menuService.getOpen(this.id);
+  }
+
+  move(direction: 'up' | 'down' | 'first' | 'last') {
+    this.menuService.setClosed();
+    this.contactService.move(this.id, direction);
+  }
+
+  isFirst(contact: IContact) {
+    return this.contactService.isFirst(contact);
+  }
+
+  isLast(contact: IContact) {
+    return this.contactService.isLast(contact);
   }
 }

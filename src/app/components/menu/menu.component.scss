@@ -1,40 +1,42 @@
-.menu-container {
-  position: relative;
-}
-
-.menu-button {
-  display: inline;
-  cursor: pointer;
-
-  i.material-icons {
-    pointer-events: none;
+:host ::ng-deep {
+  .menu-container {
+    position: relative;
   }
-}
 
-.menu-body {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
-  display: none;
-  width: 200px;
-  z-index: 1;
-  background-color: white;
+  .menu-button {
+    display: inline;
+    cursor: pointer;
 
-  li {
-    padding: 10px 20px;
-    list-style: none;
-
-    &:hover {
-      background-color: cornflowerblue;
-      color: white;
-      cursor: pointer;
+    i.material-icons {
+      pointer-events: none;
     }
   }
 
-  &.open {
-    display: block;
+  .menu-body {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+    width: 250px;
+    z-index: 1;
+    background-color: white;
+
+    li {
+      padding: 10px 20px;
+      list-style: none;
+
+      &:hover {
+        background-color: cornflowerblue;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    &.open {
+      display: block;
+    }
   }
 }
