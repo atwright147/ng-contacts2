@@ -32,3 +32,14 @@ td {
   border: 1px solid #ccc;
   padding: 10px;
 }
+
+button {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  padding: 10px 20px;
+  font: {
+    family: inherit;
+    weight: inherit;
+    size: inherit;
+  }
+}

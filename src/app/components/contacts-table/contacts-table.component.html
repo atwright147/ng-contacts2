@@ -18,30 +18,35 @@
       <td>
         <app-menu [id]="contact" [allItems]="contacts">
           <ng-template let-open="open">
-            <ul class="menu-body" [ngClass]="{ 'open': open }">
-              <li>
-                <label><input type="radio" name="move" value="up"> Move Up</label>
-              </li>
-              <li>
-                <label><input type="radio" name="move" value="down"> Move Down</label>
-              </li>
-              <li>
-                <label><input type="radio" name="move" value="top"> Move to Top</label>
-              </li>
-              <li>
-                <label><input type="radio" name="move" value="bottom"> Move to Bottom</label>
-              </li>
-              <li>
-                <label><input type="radio" name="move" value="index"> Move to</label>
-                <select name="row">
-                  <option value="before">before</option>
-                  <option value="after">after</option>
-                </select>
-                <select name="row">
-                  <option *ngFor="let item of allItems; let idx = index" value="item">{{ idx + 1 }}</option>
-                </select>
-              </li>
-            </ul>
+            <div class="menu-body" [ngClass]="{ 'open': open }">
+              <form #contactReorderForm="ngForm" (submit)="handleSubmit($event, contact, contactReorderForm)">
+                <ul>
+                  <li>
+                    <label><input type="radio" name="direction" value="up" ngModel> Move Up</label>
+                  </li>
+                  <li>
+                    <label><input type="radio" name="direction" value="down" ngModel> Move Down</label>
+                  </li>
+                  <li>
+                    <label><input type="radio" name="direction" value="first" ngModel> Move to Top</label>
+                  </li>
+                  <li>
+                    <label><input type="radio" name="direction" value="last" ngModel> Move to Bottom</label>
+                  </li>
+                  <li>
+                    <label><input type="radio" name="direction" value="relative" ngModel> Move to</label>
+                    <select name="relativePosition" ngModel>
+                      <option value="before">before</option>
+                      <option value="after">after</option>
+                    </select>
+                    <select name="relativeTo" ngModel>
+                      <option *ngFor="let contact of contacts; let idx = index" [value]="idx">{{ idx + 1 }}</option>
+                    </select>
+                  </li>
+                </ul>
+                <button type="submit">Confirm</button>
+              </form>
+            </div>
           </ng-template>
         </app-menu>
       </td>

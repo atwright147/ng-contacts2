@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { IContact } from '../interfaces/contact.interface';
 import { getUniqueMerge } from '../../helpers/array.helper';
+import { MoveType } from '../enums/move-type';
+import { RelativePosition } from '../enums/relative-position';
 
 @Injectable({
   providedIn: 'root'
@@ -65,28 +67,42 @@ export class ContactService {
     this._checked.next(checkedClone);
   }
 
-  move(row: IContact, direction: 'up' | 'down' | 'first' | 'last') {
-    const index = this._contacts.value.indexOf(row);
+  move(contact: IContact, moveType: MoveType, relativePosition?: RelativePosition, relativeTo?: number) {
+    const contacts = [...this._contacts.value];
+    const index = contacts.indexOf(contact);
     if (index === -1) { return; }
 
-    switch (direction) {
-      case 'up':
-        [this._contacts.value[index - 1], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[index - 1]];
+    switch (moveType) {
+      case MoveType.UP:
+        [contacts[index - 1], contacts[index]] = [contacts[index], contacts[index - 1]];
         break;
 
-      case 'down':
-        [this._contacts.value[index + 1], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[index + 1]];
+      case MoveType.DOWN:
+        [contacts[index + 1], contacts[index]] = [contacts[index], contacts[index + 1]];
         break;
 
-      case 'first':
-        [this._contacts.value[0], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[0]];
+      case MoveType.FIRST:
+        contacts.unshift(contacts.splice(index, 1)[0]);
         break;
 
-      case 'last':
-        const len = this._contacts.value.length - 1;
-        [this._contacts.value[len], this._contacts.value[index]] = [this._contacts.value[index], this._contacts.value[len]];
+      case MoveType.LAST:
+        contacts.push(contacts.splice(index, 1)[0]);
+        break;
+
+      case MoveType.RELATIVE:
+        let newIndex: number;
+        if (relativePosition === RelativePosition.AFTER) {
+          newIndex = Number(relativeTo) + 1;
+        }
+        if (relativePosition === RelativePosition.BEFORE) {
+          newIndex = Number(relativeTo);
+        }
+        const removedElement = contacts.splice(index, 1)[0];
+        contacts.splice(newIndex, 0, removedElement);
         break;
     }
+
+    this._contacts.next(contacts);
   }
 
   isFirst(contact: IContact) {

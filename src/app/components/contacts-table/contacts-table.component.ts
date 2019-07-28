@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ContactService } from '../../services/contact.service';
+import { MenuService } from '../../services/menu.service';
 import { IContact } from '../../interfaces/contact.interface';
+import { MoveType } from '../../enums/move-type';
 
 @Component({
   selector: 'app-contacts-table',
@@ -10,9 +12,11 @@ import { IContact } from '../../interfaces/contact.interface';
 })
 export class ContactsTableComponent {
   @Input() contacts: IContact[];
+  positionsEnum = MoveType;
 
   constructor(
     private readonly contactService: ContactService,
+    private readonly menuService: MenuService,
   ) { }
 
   checkOne(event: any, row: IContact) {
@@ -53,8 +57,8 @@ export class ContactsTableComponent {
     this.contactService.sort(column);
   }
 
-  move(contact: IContact, direction: 'up' | 'down' | 'first' | 'last') {
-    this.contactService.move(contact, direction);
+  move(contact: IContact, position: MoveType) {
+    this.contactService.move(contact, position);
   }
 
   isFirst(contact: IContact) {
@@ -63,5 +67,12 @@ export class ContactsTableComponent {
 
   isLast(contact: IContact) {
     return this.contactService.isLast(contact);
+  }
+
+  handleSubmit(event: Event, contact: IContact, form: any) {
+    event.preventDefault();
+    this.menuService.setClosed();
+    const direction = form.value.direction.toUpperCase();  // linting fix (line length)
+    this.contactService.move(contact, MoveType[direction] as any, form.value.relativePosition, form.value.relativeTo);
   }
 }
