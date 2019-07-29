@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import cloneDeep from 'lodash/cloneDeep';
 
 import { IContact } from '../interfaces/contact.interface';
 import { getUniqueMerge } from '../../helpers/array.helper';
@@ -68,8 +69,8 @@ export class ContactService {
   }
 
   move(contact: IContact, moveType: MoveType, relativePosition?: RelativePosition, relativeTo?: number) {
-    const contacts = [...this._contacts.value];
-    const index = contacts.indexOf(contact);
+    const index = this._contacts.value.indexOf(contact);
+    const contacts = cloneDeep(this._contacts.value);
     if (index === -1) { return; }
 
     switch (moveType) {
