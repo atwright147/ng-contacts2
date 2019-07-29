@@ -16,22 +16,30 @@
         <input type="checkbox" (change)="checkOne($event, contact)">
       </td>
       <td>
-        <app-menu [id]="contact" [allItems]="contacts">
+        <app-menu [id]="contact">
           <ng-template let-open="open">
             <div class="menu-body" [ngClass]="{ 'open': open }">
               <form #contactReorderForm="ngForm" (submit)="handleSubmit($event, contact, contactReorderForm)">
                 <ul>
                   <li>
-                    <label><input type="radio" name="direction" value="up" ngModel> Move Up</label>
+                    <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
+                      <input type="radio" name="direction" value="up" ngModel [disabled]="isFirst(contact)"> Move Up
+                    </label>
                   </li>
                   <li>
-                    <label><input type="radio" name="direction" value="down" ngModel> Move Down</label>
+                    <label [ngClass]="{ 'is-disabled': isLast(contact) }">
+                      <input type="radio" name="direction" value="down" ngModel [disabled]="isLast(contact)"> Move Down
+                    </label>
                   </li>
                   <li>
-                    <label><input type="radio" name="direction" value="first" ngModel> Move to Top</label>
+                    <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
+                      <input type="radio" name="direction" value="first" ngModel [disabled]="isFirst(contact)"> Move to Top
+                    </label>
                   </li>
                   <li>
-                    <label><input type="radio" name="direction" value="last" ngModel> Move to Bottom</label>
+                    <label [ngClass]="{ 'is-disabled': isLast(contact) }">
+                      <input type="radio" name="direction" value="last" ngModel [disabled]="isLast(contact)"> Move to Bottom
+                    </label>
                   </li>
                   <li>
                     <label><input type="radio" name="direction" value="relative" ngModel> Move to</label>
