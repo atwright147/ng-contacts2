@@ -3,6 +3,7 @@ import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/co
 import { ContactService } from '../../services/contact.service';
 import { MenuService } from '../../services/menu.service';
 import { IContact } from '../../interfaces/contact.interface';
+import { MoveType } from '../../enums/move-type';
 
 @Component({
   selector: 'app-menu',
@@ -33,7 +34,7 @@ export class MenuComponent implements OnInit {
     return this.menuService.getOpen(this.id);
   }
 
-  move(direction: 'up' | 'down' | 'first' | 'last') {
+  move(direction: MoveType) {
     this.menuService.setClosed();
     this.contactService.move(this.id, direction);
   }
