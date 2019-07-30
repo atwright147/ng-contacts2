@@ -23,22 +23,22 @@
                 <ul>
                   <li>
                     <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
-                      <input type="radio" name="direction" value="up" ngModel [disabled]="isFirst(contact)"> Move Up
+                      <input type="radio" name="direction" value="up" ngModel [attr.disabled]="disable(isFirst(contact))"> Move Up
                     </label>
                   </li>
                   <li>
                     <label [ngClass]="{ 'is-disabled': isLast(contact) }">
-                      <input type="radio" name="direction" value="down" ngModel [disabled]="isLast(contact)"> Move Down
+                      <input type="radio" name="direction" value="down" ngModel [attr.disabled]="disable(isLast(contact))"> Move Down
                     </label>
                   </li>
                   <li>
                     <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
-                      <input type="radio" name="direction" value="first" ngModel [disabled]="isFirst(contact)"> Move to Top
+                      <input type="radio" name="direction" value="first" ngModel [attr.disabled]="disable(isFirst(contact))"> Move to Top
                     </label>
                   </li>
                   <li>
                     <label [ngClass]="{ 'is-disabled': isLast(contact) }">
-                      <input type="radio" name="direction" value="last" ngModel [disabled]="isLast(contact)"> Move to Bottom
+                      <input type="radio" name="direction" value="last" ngModel [attr.disabled]="disable(isLast(contact))"> Move to Bottom
                     </label>
                   </li>
                   <li>

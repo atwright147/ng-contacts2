@@ -69,6 +69,10 @@ export class ContactsTableComponent {
     return this.contactService.isLast(contact);
   }
 
+  disable(status: boolean) {
+    return status ? true : null;
+  }
+
   handleSubmit(event: Event, contact: IContact, form: any) {
     event.preventDefault();
     this.menuService.setClosed();
