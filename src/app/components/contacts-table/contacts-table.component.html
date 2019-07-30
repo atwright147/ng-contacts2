@@ -9,7 +9,6 @@
       <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
       <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
       <th>Avatar</th>
-      <th>Actions</th>
     </tr>
     <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
       <td>
@@ -64,12 +63,6 @@
       <td>{{ contact.prefix }}</td>
       <td>{{ contact.email }}</td>
       <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
-      <td>
-        <button (click)="move(contact, 'up')" *ngIf="!isFirst(contact)">Up</button>
-        <button (click)="move(contact, 'down')" *ngIf="!isLast(contact)">Down</button>
-        <button (click)="move(contact, 'first')" *ngIf="!isFirst(contact)">First</button>
-        <button (click)="move(contact, 'last')" *ngIf="!isLast(contact)">Last</button>
-      </td>
     </tr>
   </table>
 </ng-container>
