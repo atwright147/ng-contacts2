@@ -75,4 +75,14 @@ export class ContactsTableComponent {
     const direction = form.value.direction.toUpperCase();  // linting fix (line length)
     this.contactService.move(contact, MoveType[direction] as any, form.value.relativePosition, form.value.relativeTo);
   }
+
+  isReorderFormValid(form: any) {
+    if (form.value.direction) {
+      if (form.value.direction === MoveType.RELATIVE) {
+        return form.value.relativePosition && form.value.relativeTo;
+      }
+      return true;
+    }
+    return false;
+  }
 }

@@ -26,6 +26,7 @@
 
     ul {
       padding: 0;
+      margin: 0;
     }
 
     li {
@@ -36,6 +37,18 @@
         background-color: cornflowerblue;
         color: white;
         cursor: pointer;
+      }
+    }
+
+    select {
+      margin-left: 7px;
+    }
+
+    button {
+      margin: {
+        bottom: 10px;
+        left: 10px;
+        top: 5px;
       }
     }
 

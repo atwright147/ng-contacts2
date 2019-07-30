@@ -52,7 +52,7 @@
                     </select>
                   </li>
                 </ul>
-                <button type="submit">Confirm</button>
+                <button type="submit" [disabled]="!isReorderFormValid(contactReorderForm)">Confirm</button>
               </form>
             </div>
           </ng-template>
