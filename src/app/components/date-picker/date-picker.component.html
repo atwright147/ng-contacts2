@@ -1,0 +1,14 @@
+<div class="date-picker">
+  <ul>
+    <li class="day">Sunday</li>
+    <li class="day">Monday</li>
+    <li class="day">Tuesday</li>
+    <li class="day">Wednesday</li>
+    <li class="day">Thursday</li>
+    <li class="day">Friday</li>
+    <li class="day">Saturday</li>
+    <li class="date" *ngFor="let cell of numCellsToRender; let cellIndex = index">
+      <span *ngIf="(cellIndex + 1) >= firstDayOfMonth && (cellIndex + 1) <= daysInMonth">{{ cellIndex + 1 }}</span>
+    </li>
+  </ul>
+</div>

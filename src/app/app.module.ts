@@ -10,6 +10,7 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list.
 import { ContactsTableComponent } from './components/contacts-table/contacts-table.component';
 import { SearchResultsTableComponent } from './components/search-results-table/search-results-table.component';
 import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DatePickerPageComponent } from './components/date-picker-page/date-pick
     ContactsTableComponent,
     SearchResultsTableComponent,
     DatePickerPageComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
