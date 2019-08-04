@@ -1,0 +1,8 @@
+<form #form="ngForm">
+  <div class="field">
+    <label for="number">Number field</label>
+    <input type="number" name="numberField" ngModel appInputRestriction="integer">
+  </div>
+
+  <button type="submit">Save</button>
+</form>
