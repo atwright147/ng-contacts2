@@ -25,7 +25,7 @@ export class DatePickerService {
     this._year = year;
   }
 
-  get firstDayOfSelectedMonth() {
+  get firstDayOfMonth() {
     return (new Date(this.year, this.month)).getDay();
   }
 
@@ -35,7 +35,7 @@ export class DatePickerService {
 
   get numCellsToRender() {
     let numCells = 0;
-    numCells += this.firstDayOfSelectedMonth;
+    numCells += this.firstDayOfMonth;
     numCells += this.numDaysInSelectedMonth;
     if (numCells % 7 !== 0) {
       while (numCells % 7 !== 0) {
@@ -43,5 +43,10 @@ export class DatePickerService {
       }
     }
     return numCells;
+  }
+
+  getLastDaysOfPreviousMonth(firstDayOfSelectedMonth = 0) {
+    const lastDaysOfPreviousMonth = [];
+
   }
 }

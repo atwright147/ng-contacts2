@@ -22,7 +22,6 @@ export class DatePickerComponent implements OnInit {
     this.genDaysInMonth(2019, 7);
     this.numCells = this.genNumCells();
     this.daysInWeek.length = this.numDaysInWeek;
-    this.weeksInMonth.length = this.numWeeksInMonth;
     this.numCellsToRender.length = this.numCells;
   }
 
