@@ -1,68 +1,72 @@
 <ng-container *ngIf="contacts">
-  <table>
-    <tr>
-      <th>Select</th>
-      <th>Menu</th>
-      <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
-      <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
-      <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
-      <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
-      <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
-      <th>Avatar</th>
-    </tr>
-    <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
-      <td>
-        <input type="checkbox" (change)="checkOne($event, contact)">
-      </td>
-      <td>
-        <app-menu [id]="contact">
-          <ng-template let-open="open">
-            <div class="menu-body" [ngClass]="{ 'open': open }">
-              <form #contactReorderForm="ngForm" (submit)="handleSubmit($event, contact, contactReorderForm)">
-                <ul>
-                  <li>
-                    <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
-                      <input type="radio" name="direction" value="up" ngModel [attr.disabled]="disable(isFirst(contact))"> Move Up
-                    </label>
-                  </li>
-                  <li>
-                    <label [ngClass]="{ 'is-disabled': isLast(contact) }">
-                      <input type="radio" name="direction" value="down" ngModel [attr.disabled]="disable(isLast(contact))"> Move Down
-                    </label>
-                  </li>
-                  <li>
-                    <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
-                      <input type="radio" name="direction" value="first" ngModel [attr.disabled]="disable(isFirst(contact))"> Move to Top
-                    </label>
-                  </li>
-                  <li>
-                    <label [ngClass]="{ 'is-disabled': isLast(contact) }">
-                      <input type="radio" name="direction" value="last" ngModel [attr.disabled]="disable(isLast(contact))"> Move to Bottom
-                    </label>
-                  </li>
-                  <li>
-                    <label><input type="radio" name="direction" value="relative" ngModel> Move to</label>
-                    <select name="relativePosition" ngModel>
-                      <option value="before">before</option>
-                      <option value="after">after</option>
-                    </select>
-                    <select name="relativeTo" ngModel>
-                      <option *ngFor="let contact of contacts; let idx = index" [value]="idx">{{ idx + 1 }}</option>
-                    </select>
-                  </li>
-                </ul>
-                <button type="submit" [disabled]="!isReorderFormValid(contactReorderForm)">Confirm</button>
-              </form>
-            </div>
-          </ng-template>
-        </app-menu>
-      </td>
-      <td>{{ contact.id }}</td>
-      <td>{{ contact.firstName }}</td>
-      <td>{{ contact.lastName }}</td>
-      <td>{{ contact.prefix }}</td>
-      <td>{{ contact.email }}</td>
-      <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
-    </tr>
-  </table>
+  <form #form="ngForm">
+    <table>
+      <tr>
+        <th>Select</th>
+        <th>Menu</th>
+        <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
+        <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
+        <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
+        <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
+        <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
+        <th>Avatar</th>
+      </tr>
+      <tr *ngFor="let contact of contacts; let contactIndex = index" [ngClass]="{'is-checked': isChecked(contact)}" [ngModelGroup]="contactIndex">
+        <td>
+          <input type="checkbox" (change)="checkOne($event, contact)">
+        </td>
+        <td>
+          <app-menu [id]="contact">
+            <ng-template let-open="open">
+              <div class="menu-body" [ngClass]="{ 'open': open }">
+                <form #contactReorderForm="ngForm" (submit)="handleSubmit($event, contact, contactReorderForm)">
+                  <ul>
+                    <li>
+                      <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
+                        <input type="radio" name="direction" value="up" ngModel [attr.disabled]="disable(isFirst(contact))"> Move Up
+                      </label>
+                    </li>
+                    <li>
+                      <label [ngClass]="{ 'is-disabled': isLast(contact) }">
+                        <input type="radio" name="direction" value="down" ngModel [attr.disabled]="disable(isLast(contact))"> Move Down
+                      </label>
+                    </li>
+                    <li>
+                      <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
+                        <input type="radio" name="direction" value="first" ngModel [attr.disabled]="disable(isFirst(contact))"> Move to Top
+                      </label>
+                    </li>
+                    <li>
+                      <label [ngClass]="{ 'is-disabled': isLast(contact) }">
+                        <input type="radio" name="direction" value="last" ngModel [attr.disabled]="disable(isLast(contact))"> Move to Bottom
+                      </label>
+                    </li>
+                    <li>
+                      <label><input type="radio" name="direction" value="relative" ngModel> Move to</label>
+                      <select name="relativePosition" ngModel>
+                        <option value="before">before</option>
+                        <option value="after">after</option>
+                      </select>
+                      <select name="relativeTo" ngModel>
+                        <option *ngFor="let contact of contacts; let idx = index" [value]="idx">{{ idx + 1 }}</option>
+                      </select>
+                    </li>
+                  </ul>
+                  <button type="submit" [disabled]="!isReorderFormValid(contactReorderForm)">Confirm</button>
+                </form>
+              </div>
+            </ng-template>
+          </app-menu>
+        </td>
+        <td><input name="id" [(ngModel)]="contact.id"></td>
+        <td><input name="firstName" [(ngModel)]="contact.firstName"></td>
+        <td><input name="lastName" [(ngModel)]="contact.lastName"></td>
+        <td><input name="prefix" [(ngModel)]="contact.prefix"></td>
+        <td><input name="email" [(ngModel)]="contact.email"></td>
+        <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
+      </tr>
+    </table>
+  </form>
+
+  <pre>{{ form.value | json }}</pre>
 </ng-container>
