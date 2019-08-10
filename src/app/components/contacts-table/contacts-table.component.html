@@ -1,24 +1,28 @@
 <ng-container *ngIf="contacts">
-  <table>
-    <tr>
-      <th>Select</th>
-      <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
-      <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
-      <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
-      <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
-      <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
-      <th>Avatar</th>
-    </tr>
-    <tr *ngFor="let contact of contacts" [ngClass]="{'is-checked': isChecked(contact)}">
-      <td>
-        <input type="checkbox" (change)="checkOne($event, contact)">
-      </td>
-      <td>{{ contact.id }}</td>
-      <td>{{ contact.firstName }}</td>
-      <td>{{ contact.lastName }}</td>
-      <td>{{ contact.prefix }}</td>
-      <td>{{ contact.email }}</td>
-      <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
-    </tr>
-  </table>
+  <form #form="ngForm">
+    <table>
+      <tr>
+        <th>Select</th>
+        <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
+        <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
+        <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
+        <th (click)="sort('prefix')" class="sortable {{getClassNames('prefix')}}">Prefix</th>
+        <th (click)="sort('email')" class="sortable {{getClassNames('email')}}">Email</th>
+        <th>Avatar</th>
+      </tr>
+      <tr *ngFor="let contact of contacts; let contactIndex = index" [ngClass]="{'is-checked': isChecked(contact)}" [ngModelGroup]="contactIndex">
+        <td>
+          <input type="checkbox" (change)="checkOne($event, contact)">
+        </td>
+        <td><input name="id" [(ngModel)]="contact.id"></td>
+        <td><input name="firstName" [(ngModel)]="contact.firstName"></td>
+        <td><input name="lastName" [(ngModel)]="contact.lastName"></td>
+        <td><input name="prefix" [(ngModel)]="contact.prefix"></td>
+        <td><input name="email" [(ngModel)]="contact.email"></td>
+        <td><img [src]="contact.avatar" alt="" style="width: 25px;"></td>
+      </tr>
+    </table>
+  </form>
+
+  <pre>{{ form.value | json }}</pre>
 </ng-container>
