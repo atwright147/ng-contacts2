@@ -49,3 +49,23 @@
 .is-disabled {
   color: #ccc;
 }
+
+table {
+  input {
+    padding: 10px;
+    border: 0;
+    background-color: transparent;
+  }
+}
+
+th {
+  padding: 10px;
+}
+
+td {
+  padding: 0;
+}
+
+.pad {
+  padding: 10px;
+}

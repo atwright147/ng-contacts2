@@ -25,12 +25,17 @@ h3 {
 
 table {
   border-collapse: collapse;
+  height: 1px;
+}
+
+tr {
+  height: 100%;
 }
 
 th,
 td {
   border: 1px solid #ccc;
-  padding: 10px;
+  height: 100%;
 }
 
 button {

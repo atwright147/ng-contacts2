@@ -3,7 +3,7 @@
     <table>
       <tr>
         <th>Select</th>
-        <th>Menu</th>
+        <th class="pad">Menu</th>
         <th (click)="sort('id')" class="sortable {{getClassNames('id')}}">ID</th>
         <th (click)="sort('firstName')" class="sortable {{getClassNames('firstName')}}">First Name</th>
         <th (click)="sort('lastName')" class="sortable {{getClassNames('lastName')}}">Last Name</th>
@@ -12,7 +12,7 @@
         <th>Avatar</th>
       </tr>
       <tr *ngFor="let contact of contacts; let contactIndex = index" [ngClass]="{'is-checked': isChecked(contact)}" [ngModelGroup]="contactIndex">
-        <td>
+        <td class="pad">
           <input type="checkbox" (change)="checkOne($event, contact)">
         </td>
         <td>
@@ -58,7 +58,7 @@
             </ng-template>
           </app-menu>
         </td>
-        <td><input name="id" [(ngModel)]="contact.id"></td>
+        <td class="pad">{{ contact.id }}</td>
         <td><input name="firstName" [(ngModel)]="contact.firstName"></td>
         <td><input name="lastName" [(ngModel)]="contact.lastName"></td>
         <td><input name="prefix" [(ngModel)]="contact.prefix"></td>
