@@ -11,10 +11,10 @@
         <th>Avatar</th>
       </tr>
       <tr *ngFor="let contact of contacts; let contactIndex = index" [ngClass]="{'is-checked': isChecked(contact)}" [ngModelGroup]="contactIndex">
-        <td>
+        <td class="pad">
           <input type="checkbox" (change)="checkOne($event, contact)">
         </td>
-        <td><input name="id" [(ngModel)]="contact.id"></td>
+        <td class="pad">{{ contact.id }}</td>
         <td><input name="firstName" [(ngModel)]="contact.firstName"></td>
         <td><input name="lastName" [(ngModel)]="contact.lastName"></td>
         <td><input name="prefix" [(ngModel)]="contact.prefix"></td>
