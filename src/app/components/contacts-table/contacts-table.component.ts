@@ -96,6 +96,6 @@ export class ContactsTableComponent {
   onSave(form: NgForm) {
     const formValue = form.value;
     const formValueAsArray = Object.values(formValue).map((_item, index) => formValue[index]);
-    this.http.post('/contacts', formValueAsArray).subscribe();
+    this.http.post('/api/contacts', formValueAsArray).subscribe();
   }
 }
