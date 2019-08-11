@@ -14,7 +14,7 @@
         <td>
           <input type="checkbox" (change)="checkOne($event, contact)">
         </td>
-        <td><input name="id" [(ngModel)]="contact.id"></td>
+        <td>{{ contact.id }}</td>
         <td><input name="firstName" [(ngModel)]="contact.firstName"></td>
         <td><input name="lastName" [(ngModel)]="contact.lastName"></td>
         <td><input name="prefix" [(ngModel)]="contact.prefix"></td>
