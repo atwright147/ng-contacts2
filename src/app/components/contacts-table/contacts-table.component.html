@@ -19,7 +19,7 @@
           <app-menu [id]="contact">
             <ng-template let-open="open">
               <div class="menu-body" [ngClass]="{ 'open': open }">
-                <form #contactReorderForm="ngForm" (submit)="handleSubmit($event, contact, contactReorderForm)">
+                <form #contactReorderForm="ngForm" (ngSubmit)="onReorderFormSubmit($event, contact, contactReorderForm)">
                   <ul>
                     <li>
                       <label [ngClass]="{ 'is-disabled': isFirst(contact) }">
