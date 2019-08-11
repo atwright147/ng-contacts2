@@ -20,6 +20,10 @@ app.get('/api/contacts/:id', (req, res) => {
   res.json(contact);
 });
 
+app.post('/api/contacts', (req, res) => {
+  res.status(200);
+});
+
 app.listen(PORT, () => {
   console.info(`Example app listening on port ${PORT}`);  // eslint-disable-line no-console
 });
