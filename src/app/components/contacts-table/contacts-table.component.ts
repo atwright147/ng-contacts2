@@ -86,6 +86,13 @@ export class ContactsTableComponent {
     return false;
   }
 
+  onReorderFormSubmit(event: Event, contact: IContact, form: any) {
+    event.preventDefault();
+    this.menuService.setClosed();
+    const direction = form.value.direction.toUpperCase();  // linting fix (line length)
+    this.contactService.move(contact, MoveType[direction] as any, form.value.relativePosition, form.value.relativeTo);
+  }
+
   onSubmit(form: NgForm) {
     const formValue = form.value;
     const formValueAsArray = Object.values(formValue).map((_, index) => formValue[index]);
