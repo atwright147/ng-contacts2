@@ -93,9 +93,9 @@ export class ContactsTableComponent {
     this.contactService.move(contact, MoveType[direction] as any, form.value.relativePosition, form.value.relativeTo);
   }
 
-  onSubmit(form: NgForm) {
+  onSave(form: NgForm) {
     const formValue = form.value;
-    const formValueAsArray = Object.values(formValue).map((_, index) => formValue[index]);
+    const formValueAsArray = Object.values(formValue).map((_item, index) => formValue[index]);
     this.http.post('/contacts', formValueAsArray).subscribe();
   }
 }
