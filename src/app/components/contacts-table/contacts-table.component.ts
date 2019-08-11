@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 import { ContactService } from '../../services/contact.service';
 import { MenuService } from '../../services/menu.service';
@@ -17,6 +19,7 @@ export class ContactsTableComponent {
   constructor(
     private readonly contactService: ContactService,
     private readonly menuService: MenuService,
+    private readonly http: HttpClient,
   ) { }
 
   checkOne(event: any, row: IContact) {
@@ -73,13 +76,6 @@ export class ContactsTableComponent {
     return status ? true : null;
   }
 
-  handleSubmit(event: Event, contact: IContact, form: any) {
-    event.preventDefault();
-    this.menuService.setClosed();
-    const direction = form.value.direction.toUpperCase();  // linting fix (line length)
-    this.contactService.move(contact, MoveType[direction] as any, form.value.relativePosition, form.value.relativeTo);
-  }
-
   isReorderFormValid(form: any) {
     if (form.value.direction) {
       if (form.value.direction === MoveType.RELATIVE) {
@@ -88,5 +84,11 @@ export class ContactsTableComponent {
       return true;
     }
     return false;
+  }
+
+  onSubmit(form: NgForm) {
+    const formValue = form.value;
+    const formValueAsArray = Object.values(formValue).map((_, index) => formValue[index]);
+    this.http.post('/contacts', formValueAsArray).subscribe();
   }
 }
