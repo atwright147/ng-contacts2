@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 import { ContactService } from '../../services/contact.service';
 import { IContact } from '../../interfaces/contact.interface';
@@ -13,6 +15,7 @@ export class ContactsTableComponent {
 
   constructor(
     private readonly contactService: ContactService,
+    private readonly http: HttpClient,
   ) { }
 
   checkOne(event: any, row: IContact) {
@@ -63,5 +66,11 @@ export class ContactsTableComponent {
 
   isLast(contact: IContact) {
     return this.contactService.isLast(contact);
+  }
+
+  onSubmit(form: NgForm) {
+    const formValue = form.value;
+    const formValueAsArray = Object.values(formValue).map((_item, index) => formValue[index]);
+    this.http.post('/contacts', formValueAsArray).subscribe();
   }
 }
